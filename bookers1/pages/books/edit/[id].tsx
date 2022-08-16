@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import UpdateForm from "../../../components/UpdateForm";
 import React, { useEffect, useState } from "react";
+import Typography from "@mui/material/Typography";
 
 const Edit = () => {
   const router = useRouter();
@@ -15,14 +16,28 @@ const Edit = () => {
 
   return (
     <>
-      <h1>Editing Book</h1>
+      <Typography
+        component="h4"
+        variant="h4"
+        align="center"
+        margin="15px 0"
+        fontWeight="fontWeightBold"
+      >
+        EditingBook
+      </Typography>
       <Link href="/books">
-        <h3>
+        <Typography
+          component="h5"
+          variant="h5"
+          align="center"
+          marginBottom="15px"
+          fontWeight="fontWeightBold"
+        >
           <a>Back</a>
-        </h3>
+        </Typography>
       </Link>
       {b && <UpdateForm book={b} />}
     </>
   );
-}
+};
 export default Edit;

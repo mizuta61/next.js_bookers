@@ -1,8 +1,10 @@
 import axios from "axios";
 import { FC, useState } from "react";
 import UpdateIcon from "@mui/icons-material/Update";
-import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import { TextField } from "@mui/material";
+import Box from "@mui/material/Box";
 
 type Props = {
   book: Book;
@@ -32,33 +34,41 @@ const UpdateForm: FC<Props> = ({ book }) => {
   };
 
   return (
-    <form onSubmit={updateBook}>
-      <Input
-        type="text"
-        value={value.title}
-        placeholder="TitleUpdate"
-        name="title"
-        onChange={handleChange}
-      />
-      <br></br>
-      <Input
-        type="text"
-        value={value.body}
-        placeholder="BodyUpdate"
-        name="body"
-        onChange={handleChange}
-      />
-      <br></br>
-      <Button
-        type="submit"
-        variant="contained"
-        color="secondary"
-        size="small"
-        startIcon={<UpdateIcon />}
-      >
-        Update
-      </Button>
-    </form>
+    <Grid container>
+      <Grid item xs display="flex" justifyContent="center" alignItems="center">
+        <Box component="form" sx={{ width: "30%" }} onSubmit={updateBook}>
+          <TextField
+            sx={{ marginBottom: "5px", width: "100%" }}
+            type="text"
+            value={value.title}
+            name="title"
+            onChange={handleChange}
+            variant="standard"
+            label="TitleUpdate"
+          />
+          <br />
+          <TextField
+            sx={{ marginBottom: "5px", width: "100%" }}
+            type="text"
+            value={value.body}
+            name="body"
+            onChange={handleChange}
+            variant="standard"
+            label="BodyUpdate"
+          />
+          <br />
+          <Button
+            sx={{ marginBottom: "15px", width: "100%" }}
+            type="submit"
+            variant="contained"
+            color="secondary"
+            startIcon={<UpdateIcon />}
+          >
+            Update
+          </Button>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 export default UpdateForm;

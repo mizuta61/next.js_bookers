@@ -1,14 +1,21 @@
 import CreateForm from "../../components/CreateForm";
 import IndexTable from "../../components/IndexTable";
+import Typography from "@mui/material/Typography";
 
 const BookList = () => {
   return (
     <>
-      <h1>CreateBook</h1>
+      <Typography component="h4" variant="h4" align="center" marginTop="15px" fontWeight="fontWeightBold">
+        CreateBook
+      </Typography>
+
       <CreateForm />
-      <h1>Book List</h1>
+
+      <Typography component="h4" variant="h4" align="center" fontWeight="fontWeightBold">
+        BookList
+      </Typography>
       <IndexTable />
     </>
   );
-}
+};
 export default BookList;

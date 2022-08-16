@@ -12,7 +12,7 @@ const Edit = () => {
     fetch(`http://localhost:3001/books/${bookId.id}`)
       .then((response) => response.json())
       .then((b) => setB(b));
-  }, []);
+  }, [bookId]);
 
   return (
     <>

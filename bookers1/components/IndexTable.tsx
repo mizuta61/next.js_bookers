@@ -117,5 +117,5 @@ const IndexTable = () => {
       )}
     </>
   );
-}
+};
 export default IndexTable;

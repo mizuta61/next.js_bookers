@@ -1,16 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Input from "@mui/material/Input";
+import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-
-type Book = {
-  id: number;
-  title: string;
-  body: string;
-  created_at: string;
-  updated_at: string;
-};
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const CreateForm = () => {
   const [book, setBook] = useState({ title: "", body: "" });
@@ -25,34 +19,48 @@ const CreateForm = () => {
 
   return (
     <>
-      <form onSubmit={createBook}>
-        <Input
-          type="text"
-          value={book.title}
-          placeholder="Title"
-          name="title"
-          onChange={handleChange}
-        />
-        <br></br>
-        <Input
-          type="text"
-          value={book.body}
-          placeholder="Body"
-          name="body"
-          onChange={handleChange}
-        />
-        <br></br>
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          size="small"
-          startIcon={<MenuBookIcon />}
+      <Grid container>
+        <Grid
+          item
+          xs
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
         >
-          Create
-        </Button>
-      </form>
+          <Box component="form" sx={{ width: "30%" }} onSubmit={createBook}>
+            <TextField
+              sx={{ marginBottom: "5px", width: "100%" }}
+              type="text"
+              value={book.title}
+              name="title"
+              onChange={handleChange}
+              variant="standard"
+              label="Title"
+            />
+            <br />
+            <TextField
+              sx={{ marginBottom: "5px", width: "100%" }}
+              type="text"
+              value={book.body}
+              name="body"
+              onChange={handleChange}
+              variant="standard"
+              label="Body"
+            />
+            <br />
+            <Button
+              sx={{ marginBottom: "15px", width: "100%" }}
+              type="submit"
+              variant="contained"
+              color="secondary"
+              startIcon={<MenuBookIcon />}
+            >
+              Create
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
-}
+};
 export default CreateForm;

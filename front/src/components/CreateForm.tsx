@@ -5,9 +5,7 @@ import Button from "@mui/material/Button";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Book } from "../types/Book";
-
-type BookCreate = Pick<Book, "title" | "body">
+import { Book, BookCreate } from "../types/Book";
 
 const CreateForm = () => {
   const initialBook: BookCreate = { title: "", body: "" }

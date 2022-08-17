@@ -5,14 +5,14 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
-import { Book } from "../types/Book";
+import { Book, BookCreate } from "../types/Book";
 
 type Props = {
   book: Book;
 };
 const UpdateForm: FC<Props> = ({ book }) => {
   const { title, body } = book;
-  const [value, setValue] = useState({ title, body });
+  const [value, setValue] = useState<BookCreate>({ title, body });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((value) => {

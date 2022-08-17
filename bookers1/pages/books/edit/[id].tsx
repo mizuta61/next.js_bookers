@@ -1,25 +1,43 @@
-import Link from 'next/link'
-import { useRouter } from "next/router"
-import UpdateForm from "../../../components/UpdateForm"
-import React, { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import UpdateForm from "../../../components/UpdateForm";
+import React, { useEffect, useState } from "react";
+import Typography from "@mui/material/Typography";
 
-export default function Edit() {
+const Edit = () => {
   const router = useRouter();
   const bookId = router.query;
-  const [ b, setB ] = useState(null);
+  const [b, setB] = useState(null);
   useEffect(() => {
     fetch(`http://localhost:3001/books/${bookId.id}`)
-      .then(response => response.json())
-      .then(b => setB(b))
-  }, [])
+      .then((response) => response.json())
+      .then((b) => setB(b));
+  }, [bookId]);
 
   return (
     <>
-      <h1>Editing Book</h1>
+      <Typography
+        component="h4"
+        variant="h4"
+        align="center"
+        margin="15px 0"
+        fontWeight="fontWeightBold"
+      >
+        EditingBook
+      </Typography>
       <Link href="/books">
-        <h3><a>Back</a></h3>
+        <Typography
+          component="h5"
+          variant="h5"
+          align="center"
+          marginBottom="15px"
+          fontWeight="fontWeightBold"
+        >
+          <a>Back</a>
+        </Typography>
       </Link>
-      {b && <UpdateForm book={b}/>}
+      {b && <UpdateForm book={b} />}
     </>
-  )
-}
+  );
+};
+export default Edit;

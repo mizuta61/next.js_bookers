@@ -30,13 +30,13 @@ const IndexTable = () => {
       .delete(`http://localhost:3001/books/${id}`)
       .catch(() => console.log("削除失敗"));
     console.log("削除成功");
-    setBooks((books) => books.filter((b: Book) => b.id !== id));
+    setBooks((books) => books.filter((book: Book) => book.id !== id));
   };
 
   useEffect(() => {
     fetch("http://localhost:3001/books")
-      .then((response) => response.json())
-      .then((books) => setBooks(books));
+      .then(res => res.json())
+      .then(books => setBooks(books));
   }, []);
 
   const handleShowDetails = (book: Book | null) => setSelectedBook(book);

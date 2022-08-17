@@ -16,6 +16,5 @@ const BookList = () => {
       </Typography>
       <IndexTable />
     </>
-  );
-};
-export default BookList;
+  )
+}

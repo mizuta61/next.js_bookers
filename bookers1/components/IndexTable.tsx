@@ -77,5 +77,6 @@ export default function IndexTable() {
     ) : null
     }
     </>
-  )
-}
+  );
+};
+export default IndexTable;

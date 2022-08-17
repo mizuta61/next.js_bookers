@@ -1,8 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import UpdateIcon from '@mui/icons-material/Update';
-import Input from '@mui/material/Input';
-import Button from '@mui/material/Button';
+import axios from "axios";
+import { FC, useState } from "react";
+import UpdateIcon from "@mui/icons-material/Update";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import { TextField } from "@mui/material";
+import Box from "@mui/material/Box";
 
 type props = {
   book: Book
@@ -27,20 +29,41 @@ export default function UpdateForm(props) {
   }
 
   return (
-    <form onSubmit={updateBook}>
-      <Input type="text" value={book.title} placeholder="TitleUpdate" onChange={handleChange('title')} />
-      <br></br>
-      <Input type="text" value={book.body} placeholder="BodyUpdate" onChange={handleChange('body')} />
-      <br></br>
-      <Button
-        type="submit"
-        variant="contained"
-        color="secondary"
-        size ="small"
-        startIcon={<UpdateIcon />}
-      >
-        Update
-      </Button>
-    </form>
-  )
-}
+    <Grid container>
+      <Grid item xs display="flex" justifyContent="center" alignItems="center">
+        <Box component="form" sx={{ width: "30%" }} onSubmit={updateBook}>
+          <TextField
+            sx={{ marginBottom: "5px", width: "100%" }}
+            type="text"
+            value={value.title}
+            name="title"
+            onChange={handleChange}
+            variant="standard"
+            label="TitleUpdate"
+          />
+          <br />
+          <TextField
+            sx={{ marginBottom: "5px", width: "100%" }}
+            type="text"
+            value={value.body}
+            name="body"
+            onChange={handleChange}
+            variant="standard"
+            label="BodyUpdate"
+          />
+          <br />
+          <Button
+            sx={{ marginBottom: "15px", width: "100%" }}
+            type="submit"
+            variant="contained"
+            color="secondary"
+            startIcon={<UpdateIcon />}
+          >
+            Update
+          </Button>
+        </Box>
+      </Grid>
+    </Grid>
+  );
+};
+export default UpdateForm;

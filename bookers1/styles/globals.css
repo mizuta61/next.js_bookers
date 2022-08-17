@@ -45,3 +45,7 @@ a {
   border-radius: 0.5em;
   background: rgb(204, 223, 233);
 }
+
+h1, h3, form{
+  text-align: center;
+}

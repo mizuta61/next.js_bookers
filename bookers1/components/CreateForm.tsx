@@ -1,11 +1,11 @@
-import axios from "axios";
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import axios from 'axios';
+import React, { useState } from 'react'
+import Input from '@mui/material/Input';
+import Button from '@mui/material/Button';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
+export default function CreateForm() {
+  const [book, setBook] = useState({title: "", body: ""});
 
   const handleChange = (input) => e => {
     setBook({...book, [input] : e.target.value});
@@ -17,49 +17,21 @@ import Box from "@mui/material/Box";
 
   return (
     <>
-
-      <Grid container>
-        <Grid
-          item
-          xs
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Box component="form" sx={{ width: "30%" }} onSubmit={createBook}>
-            <TextField
-              sx={{ marginBottom: "5px", width: "100%" }}
-              type="text"
-              value={book.title}
-              name="title"
-              onChange={handleChange}
-              variant="standard"
-              label="Title"
-            />
-            <br />
-            <TextField
-              sx={{ marginBottom: "5px", width: "100%" }}
-              type="text"
-              value={book.body}
-              name="body"
-              onChange={handleChange}
-              variant="standard"
-              label="Body"
-            />
-            <br />
-            <Button
-              sx={{ marginBottom: "15px", width: "100%" }}
-              type="submit"
-              variant="contained"
-              color="secondary"
-              startIcon={<MenuBookIcon />}
-            >
-              Create
-            </Button>
-          </Box>
-        </Grid>
-      </Grid>
+    <form onSubmit={createBook}>
+      <Input type="text" value={book.title} placeholder="Title" onChange={handleChange('title')} />
+      <br></br>
+      <Input type="text" value={book.body} placeholder="Body" onChange={handleChange('body')} />
+      <br></br>
+      <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            size ="small"
+            startIcon={<MenuBookIcon />}
+      >
+        Create
+      </Button>
+    </form>
     </>
-  );
-};
-export default CreateForm;
+  )
+}

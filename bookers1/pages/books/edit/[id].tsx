@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import UpdateForm from "../../../components/UpdateForm";
-import React, { useEffect, useState } from "react";
-import Typography from "@mui/material/Typography";
+import Link from 'next/link'
+import { useRouter } from "next/router"
+import UpdateForm from "../../../components/UpdateForm"
+import React, { useEffect, useState } from 'react';
 
 export default function Edit() {
   const router = useRouter();
@@ -10,36 +9,17 @@ export default function Edit() {
   const [ b, setB ] = useState(null);
   useEffect(() => {
     fetch(`http://localhost:3001/books/${bookId.id}`)
-      .then((response) => response.json())
-      .then((b) => setB(b));
-  }, [bookId]);
+      .then(response => response.json())
+      .then(b => setB(b))
+  }, [])
 
   return (
     <>
-      <Typography
-        component="h4"
-        variant="h4"
-        align="center"
-        margin="15px 0"
-        fontWeight="fontWeightBold"
-      >
-        EditingBook
-      </Typography>
+      <h1>Editing Book</h1>
       <Link href="/books">
-
-        <Typography
-          component="h5"
-          variant="h5"
-          align="center"
-          marginBottom="15px"
-          fontWeight="fontWeightBold"
-        >
-          <a>Back</a>
-        </Typography>
+        <h3><a>Back</a></h3>
       </Link>
       {b && <UpdateForm book={b}/>}
     </>
-
-  );
-};
-export default Edit;
+  )
+}

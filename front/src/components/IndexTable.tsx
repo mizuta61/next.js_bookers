@@ -15,8 +15,9 @@ import TableRow from "@mui/material/TableRow";
 import { Book } from "../types/Book";
 
 const IndexTable = () => {
-  const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [books, setBooks] = useState<Book[]>([]);
+  const [selectedBookId, setSelectedBookId] = useState<number | null>(null);
+  const selectedBook = books.find(book => book.id === selectedBookId);
 
   const deleteBook = async (id: number) => {
     await axios
@@ -32,7 +33,7 @@ const IndexTable = () => {
       .then(books => setBooks(books));
   }, []);
 
-  const handleShowDetails = (book: Book | null) => setSelectedBook(book);
+  const handleShowDetails = (id?: number) => setSelectedBookId(id || null);
 
   return (
     <>
@@ -46,9 +47,9 @@ const IndexTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {books.map((book: Book, index) => {
+            {books.map(book => {
               return (
-                <TableRow key={index}>
+                <TableRow key={book.id}>
                   <TableCell>{book.title}</TableCell>
                   <TableCell>{book.body}</TableCell>
                   <TableCell>
@@ -57,7 +58,7 @@ const IndexTable = () => {
                       color="primary"
                       size="small"
                       startIcon={<VisibilityIcon />}
-                      onClick={() => handleShowDetails(book)}
+                      onClick={() => handleShowDetails(book.id)}
                     >
                       SHOW
                     </Button>
@@ -95,7 +96,7 @@ const IndexTable = () => {
       {selectedBook && (
         <div id="overlay">
           <div id="book-details">
-            <button onClick={() => handleShowDetails(null)}>Close ✖️</button>
+            <button onClick={() => handleShowDetails()}>Close ✖️</button>
             <p>ID: {selectedBook.id}</p>
             <p>Title: {selectedBook.title}</p>
             <p>Body: {selectedBook.body}</p>

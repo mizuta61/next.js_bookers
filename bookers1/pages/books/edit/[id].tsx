@@ -6,10 +6,11 @@ import Typography from "@mui/material/Typography";
 
 const Edit = () => {
   const router = useRouter();
-  const bookId = router.query;
+  const bookId = router.query.id;
   const [b, setB] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:3001/books/${bookId.id}`)
+    if (!bookId) return;
+    fetch(`http://localhost:3001/books/${bookId}`)
       .then((response) => response.json())
       .then((b) => setB(b));
   }, [bookId]);

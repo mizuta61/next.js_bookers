@@ -4,10 +4,10 @@ import UpdateForm from "../../../components/UpdateForm";
 import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 
-const Edit = () => {
+export default function Edit() {
   const router = useRouter();
   const bookId = router.query;
-  const [b, setB] = useState(null);
+  const [ b, setB ] = useState(null);
   useEffect(() => {
     fetch(`http://localhost:3001/books/${bookId.id}`)
       .then((response) => response.json())
@@ -26,6 +26,7 @@ const Edit = () => {
         EditingBook
       </Typography>
       <Link href="/books">
+
         <Typography
           component="h5"
           variant="h5"
@@ -36,8 +37,9 @@ const Edit = () => {
           <a>Back</a>
         </Typography>
       </Link>
-      {b && <UpdateForm book={b} />}
+      {b && <UpdateForm book={b}/>}
     </>
+
   );
 };
 export default Edit;

@@ -6,32 +6,27 @@ import Grid from "@mui/material/Grid";
 import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 
-type Props = {
-  book: Book;
-};
+type props = {
+  book: Book
+}
 type Book = {
-  id: number;
-  title: string;
-  body: string;
-  created_at: string;
-  updated_at: string;
-};
+  id: number
+  title: string
+  body: string
+  created_at: string 
+  updated_at: string
+}
 
-const UpdateForm: FC<Props> = ({ book }) => {
-  const { title, body } = book;
-  const [value, setValue] = useState({ title, body });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((value) => {
-      return { ...value, [e.target.name]: e.target.value };
-    });
-  };
+export default function UpdateForm(props) {
+  console.log(props);
+  const [book, setBook] = useState({title: props.book.title, body: props.book.body});
+  const handleChange = (input) => e => {
+    setBook( book => { return {...book, [input] : e.target.value} }); 
+  }
 
   const updateBook = async () => {
-    await axios.patch(`http://localhost:3001/books/${book.id}`, {
-      book: value,
-    });
-  };
+    await axios.patch(`http://localhost:3001/books/${props.book.id}`, {book});
+  }
 
   return (
     <Grid container>

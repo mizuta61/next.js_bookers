@@ -6,19 +6,18 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-const CreateForm = () => {
-  const [book, setBook] = useState({ title: "", body: "" });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBook({ ...book, [e.target.name]: e.target.value });
-  };
+  const handleChange = (input) => e => {
+    setBook({...book, [input] : e.target.value});
+  }
 
-  const createBook = async () => {
-    await axios.post("http://localhost:3001/books", { book });
-  };
+  const createBook = async() => {
+    await axios.post("http://localhost:3001/books", {book})
+  }
 
   return (
     <>
+
       <Grid container>
         <Grid
           item

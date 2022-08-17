@@ -57,5 +57,6 @@ const BookList = () => {
       </Typography>
       {session && <IndexTable />}
     </>
-  )
-}
+  );
+};
+export default BookList;

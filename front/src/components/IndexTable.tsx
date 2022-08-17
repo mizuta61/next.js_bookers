@@ -12,14 +12,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-
-type Book = {
-  id: number;
-  title: string;
-  body: string;
-  created_at: string;
-  updated_at: string;
-};
+import { Book } from "../types/Book";
 
 const IndexTable = () => {
   const [books, setBooks] = useState([]);

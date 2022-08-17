@@ -5,18 +5,11 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
+import { Book } from "../types/Book";
 
 type Props = {
   book: Book;
 };
-type Book = {
-  id: number;
-  title: string;
-  body: string;
-  created_at: string;
-  updated_at: string;
-};
-
 const UpdateForm: FC<Props> = ({ book }) => {
   const { title, body } = book;
   const [value, setValue] = useState({ title, body });

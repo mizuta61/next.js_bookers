@@ -15,23 +15,25 @@ export default function Component() {
           fontWeight="fontWeightBold"
           marginTop="30px"
         >
-          Signed in as {session.user.name} <br />
+          Signed in as {session.user?.name} <br />
           <Button onClick={() => signOut()} variant="outlined" color="error">
             Sign out
           </Button>
         </Typography>
 
         <Link href="/books">
-        <Typography
-          component="h4"
-          variant="h4"
-          align="center"
-          marginTop="30px"
-          fontWeight="fontWeightBold"
-        >
-          <a>Click Here</a>
-        </Typography>
-      </Link>
+          <a>
+            <Typography
+              component="h4"
+              variant="h4"
+              align="center"
+              marginTop="30px"
+              fontWeight="fontWeightBold"
+            >
+              Click Here
+            </Typography>
+          </a>
+        </Link>
       </>
     );
   }

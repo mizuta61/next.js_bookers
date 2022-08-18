@@ -16,7 +16,7 @@ const BookList = () => {
           fontWeight="fontWeightBold"
           marginTop="30px"
         >
-          Signed in as {session.user.name} <br />
+          Signed in as {session.user?.name} <br />
           <Button onClick={() => signOut()} variant="outlined" color="error">
             Sign out
           </Button>

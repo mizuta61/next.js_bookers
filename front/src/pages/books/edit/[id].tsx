@@ -6,12 +6,13 @@ import Typography from "@mui/material/Typography";
 
 const Edit = () => {
   const router = useRouter();
-  const bookId = router.query;
-  const [b, setB] = useState(null);
+  const bookId = router.query.id;
+  const [book, setBook] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:3001/books/${bookId.id}`)
-      .then((response) => response.json())
-      .then((b) => setB(b));
+    if (!bookId) return;
+    fetch(`http://localhost:3001/books/${bookId}`)
+      .then(res => res.json())
+      .then(book => setBook(book));
   }, [bookId]);
 
   return (
@@ -36,7 +37,7 @@ const Edit = () => {
           <a>Back</a>
         </Typography>
       </Link>
-      {b && <UpdateForm book={b} />}
+      {book && <UpdateForm book={book} />}
     </>
   );
 };

@@ -2,9 +2,10 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
+import Box from '@mui/material/Box';
 
 export default function Component() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
   if (session) {
     return (
       <>
@@ -22,7 +23,7 @@ export default function Component() {
         </Typography>
 
         <Link href="/books">
-          <a>
+          <Box component="a">
             <Typography
               component="h4"
               variant="h4"
@@ -32,7 +33,7 @@ export default function Component() {
             >
               Click Here
             </Typography>
-          </a>
+          </Box>
         </Link>
       </>
     );

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import UpdateForm from "../../../components/UpdateForm";
 import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 const Edit = () => {
   const router = useRouter();
@@ -11,8 +12,8 @@ const Edit = () => {
   useEffect(() => {
     if (!bookId) return;
     fetch(`http://localhost:3001/books/${bookId}`)
-      .then(res => res.json())
-      .then(book => setBook(book));
+      .then((res) => res.json())
+      .then((book) => setBook(book));
   }, [bookId]);
 
   return (
@@ -34,7 +35,7 @@ const Edit = () => {
           marginBottom="15px"
           fontWeight="fontWeightBold"
         >
-          <a>Back</a>
+          <Box component="a">Back</Box>
         </Typography>
       </Link>
       {book && <UpdateForm book={book} />}

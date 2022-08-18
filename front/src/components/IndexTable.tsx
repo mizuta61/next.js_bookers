@@ -13,11 +13,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Book } from "../types/Book";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 const IndexTable = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [selectedBookId, setSelectedBookId] = useState<number | null>(null);
-  const selectedBook = books.find(book => book.id === selectedBookId);
+  const selectedBook = books.find((book) => book.id === selectedBookId);
 
   const deleteBook = async (id: number) => {
     await axios
@@ -29,11 +31,22 @@ const IndexTable = () => {
 
   useEffect(() => {
     fetch("http://localhost:3001/books")
-      .then(res => res.json())
-      .then(books => setBooks(books));
+      .then((res) => res.json())
+      .then((books) => setBooks(books));
   }, []);
 
   const handleShowDetails = (id?: number) => setSelectedBookId(id || null);
+
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "lightblue",
+    p: 4,
+    borderRadius: "0.5em"
+  };
 
   return (
     <>
@@ -47,7 +60,7 @@ const IndexTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {books.map(book => {
+            {books.map((book) => {
               return (
                 <TableRow key={book.id}>
                   <TableCell>{book.title}</TableCell>
@@ -71,7 +84,7 @@ const IndexTable = () => {
                       startIcon={<EditIcon />}
                     >
                       <Link href={`/books/edit/${book.id}`}>
-                        <a>EDIT</a>
+                        <Box component="a">EDIT</Box>
                       </Link>
                     </Button>
                   </TableCell>
@@ -94,20 +107,20 @@ const IndexTable = () => {
       </TableContainer>
 
       {selectedBook && (
-        <div id="overlay">
-          <div id="book-details">
-            <button onClick={() => handleShowDetails()}>Close ✖️</button>
-            <p>ID: {selectedBook.id}</p>
-            <p>Title: {selectedBook.title}</p>
-            <p>Body: {selectedBook.body}</p>
-            <p>
+        <Modal open>
+          <Box sx={style}>
+            <Button onClick={() => handleShowDetails()} variant="contained">Close ✖️</Button>
+            <Box component="p">ID: {selectedBook.id}</Box>
+            <Box component="p">Title: {selectedBook.title}</Box>
+            <Box component="p">Body: {selectedBook.body}</Box>
+            <Box>
               Created At:{" "}
               {DateTime.fromISO(selectedBook.created_at, {
                 zone: "Asia/Tokyo",
               }).toLocaleString(DateTime.DATE_MED)}
-            </p>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Modal>
       )}
     </>
   );

@@ -1,0 +1,13 @@
+services: 
+  server:
+    build: ./server
+    ports:
+      - 3001:3000
+    volumes:
+      - ./server:/app
+  front: 
+    build: ./front
+    volumes:
+      - ./front:/usr/src/app
+    ports:
+      - 3000:3000
